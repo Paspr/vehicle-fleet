@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  
+  <title>Vehicle database</title>
+  
+  <style>
+    /* Styling for Vehicle table */
+    table.vehicle {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table.vehicle td, th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table.vehicle tr:nth-child(even){
+      background-color: #f2f2f2;
+    }
+
+    table.vehicle tr:hover {
+      background-color: #ddd;
+    }
+
+    table.vehicle th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Vehicle Database</h1>
+  <!-- 
+    Specify the table that will be used to display the vehicle database
+  -->
+  <table class="vehicle">
+    <tr>
+      <th>ID</th>
+      <th>Cost</th>
+      <th>YOM</th>
+      <th>Mileage</th>
+    </tr>
+  </table>
+  <br/>
+ 
+  <!-- 
+    Script runs on each page load to update the vehicle database
+   -->
+  <script>
+    personTable = document.querySelector("table")
+    fetch("/vehicles")
+      .then(response => response.json())
+      .then(personList => {
+        personList.forEach(vehicles => {
+          // Create the table row
+          row = document.createElement("tr") 
+          // Create the table data elements and extract corresponding values from received `vehicle`
+          id = document.createElement("td") 
+          id.innerHTML = vehicles.id
+          cost = document.createElement("td") 
+          cost.innerHTML = vehicles.cost
+          yom = document.createElement("td")
+          yom.innerHTML = vehicles.yom
+          mileage = document.createElement("td")
+          mileage.innerHTML = vehicles.mileage
+          // Add the data elements to the row
+          row.appendChild(id)
+          row.appendChild(cost)
+          row.appendChild(yom)
+          row.appendChild(mileage)
+          // Add the row element to the table
+          personTable.appendChild(row)
+        })
+      })
+  </script>
+
+</body>
+
+</html>
