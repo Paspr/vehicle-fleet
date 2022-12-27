@@ -7,27 +7,27 @@
   <title>Vehicle database</title>
   
   <style>
-    /* Styling for Vehicle table */
-    table.vehicle {
+    /* Styling for Vehicle and Brand tables */
+    table {
       font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
       border-collapse: collapse;
       width: 100%;
     }
 
-    table.vehicle td, th {
+    table td, th {
       border: 1px solid #ddd;
       padding: 8px;
     }
 
-    table.vehicle tr:nth-child(even){
+    table tr:nth-child(even){
       background-color: #f2f2f2;
     }
 
-    table.vehicle tr:hover {
+    table tr:hover {
       background-color: #ddd;
     }
 
-    table.vehicle th {
+    table th {
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: left;
@@ -51,12 +51,29 @@
     </tr>
   </table>
   <br/>
+
+  <h1>Brand Database</h1>
+  <!-- 
+    Specify the table that will be used to display the brand database
+  -->
+  <table class="brand">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Seat capacity</th>
+      <th>Tank capacity</th>
+      <th>Weight capacity</th>
+    </tr>
+  </table>
+  <br/>
  
   <!-- 
     Script runs on each page load to update the vehicle database
    -->
   <script>
-    personTable = document.querySelector("table")
+    
+    vehicleTable = document.querySelector(".vehicle")
     fetch("/vehicles")
       .then(response => response.json())
       .then(personList => {
@@ -78,7 +95,39 @@
           row.appendChild(yom)
           row.appendChild(mileage)
           // Add the row element to the table
-          personTable.appendChild(row)
+          vehicleTable.appendChild(row)
+        })
+      })
+      
+    brandTable = document.querySelector(".brand")
+    fetch("/brands")
+      .then(response => response.json())
+      .then(personList => {
+        personList.forEach(brands => {
+          // Create the table row
+          row = document.createElement("tr") 
+          // Create the table data elements and extract corresponding values from received `brand`
+          id = document.createElement("td") 
+          id.innerHTML = brands.id
+          name = document.createElement("td") 
+          name.innerHTML = brands.name
+          type = document.createElement("td")
+          type.innerHTML = brands.type
+          seat_capacity = document.createElement("td")
+          seat_capacity.innerHTML = brands.seat_capacity
+          tank_capacity = document.createElement("td")
+          tank_capacity.innerHTML = brands.tank_capacity
+          weight_capacity = document.createElement("td")
+          weight_capacity.innerHTML = brands.weight_capacity
+          // Add the data elements to the row
+          row.appendChild(id)
+          row.appendChild(name)
+          row.appendChild(type)
+          row.appendChild(seat_capacity)
+          row.appendChild(tank_capacity)
+          row.appendChild(weight_capacity)
+          // Add the row element to the table
+          brandTable.appendChild(row)
         })
       })
   </script>
