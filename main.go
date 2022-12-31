@@ -72,8 +72,8 @@ func ListBrandHandler(c *gin.Context) {
 		for rows.Next() {
 
 			item := Brand{}
-			if err := rows.Scan(&item.ID, &item.Name, &item.SeatCapacity,
-				&item.TankCapacity, &item.Type, &item.WeightCapacity); err != nil {
+			if err := rows.Scan(&item.ID, &item.Name, &item.Type, &item.SeatCapacity,
+				&item.TankCapacity, &item.WeightCapacity); err != nil {
 				fmt.Println(err.Error())
 				c.JSON(http.StatusInternalServerError, gin.H{"message": "error with DB"})
 			}

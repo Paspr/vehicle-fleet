@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-  <title>Vehicle database</title>
+  <title>Vehicle&Brand database</title>
   
   <style>
     /* Styling for Vehicle and Brand tables */
@@ -109,8 +109,8 @@
           // Create the table data elements and extract corresponding values from received `brand`
           id = document.createElement("td") 
           id.innerHTML = brands.id
-          name = document.createElement("td") 
-          name.innerHTML = brands.name
+          brand_name = document.createElement("td") 
+          brand_name.innerHTML = brands.name
           type = document.createElement("td")
           type.innerHTML = brands.type
           seat_capacity = document.createElement("td")
@@ -121,7 +121,7 @@
           weight_capacity.innerHTML = brands.weight_capacity
           // Add the data elements to the row
           row.appendChild(id)
-          row.appendChild(name)
+          row.appendChild(brand_name)
           row.appendChild(type)
           row.appendChild(seat_capacity)
           row.appendChild(tank_capacity)
