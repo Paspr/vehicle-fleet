@@ -1,6 +1,7 @@
 # Vehicle Fleet test REST API
 
 Test REST API in Go
+Only GET methods are implemented.
 
 ## Example of API using
 Run main.go file and open http://localhost:8080/
